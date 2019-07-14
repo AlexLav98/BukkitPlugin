@@ -12,7 +12,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-import javax.security.auth.login.LoginException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -33,7 +36,7 @@ public class TheBestPlugin extends JavaPlugin {
          */
         try {
 
-            jda = new JDABuilder(AccountType.BOT).setToken("").build().awaitReady();
+            jda = new JDABuilder(AccountType.BOT).setToken(getBotToken()).build().awaitReady();
         }
 
         catch (Exception e) { e.printStackTrace(); }
@@ -91,5 +94,13 @@ public class TheBestPlugin extends JavaPlugin {
         }
 
         return false;
+    }
+
+    private String getBotToken() throws IOException {
+
+        FileReader tokenTextFileReader = new FileReader("..\\..\\..\\resources\\bot_token.txt");
+        BufferedReader tokenTextFileBufferedReader = new BufferedReader(tokenTextFileReader);
+
+        return tokenTextFileBufferedReader.readLine();
     }
 }
