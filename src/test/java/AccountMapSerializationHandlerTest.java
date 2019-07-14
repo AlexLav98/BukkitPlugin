@@ -23,7 +23,8 @@ public class AccountMapSerializationHandlerTest {
 
     @Test
     public void accountMapShouldSerialize() {
-
+        
+        assertEquals(5, 5);
         //AccountMapSerializationHandler testHandler = new AccountMapSerializationHandler(SQLConnection, )
     }
 }

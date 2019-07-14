@@ -10,6 +10,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import javax.security.auth.login.LoginException;
 import java.sql.Connection;
@@ -32,11 +33,10 @@ public class TheBestPlugin extends JavaPlugin {
          */
         try {
 
-            jda = new JDABuilder(AccountType.BOT).setToken("NTk2MTYyMzU3OTk1MTEwNDAw.XR1nnQ.lPgWIfNTp-lbgParbeHYV0wgW8w").build().awaitReady();
+            jda = new JDABuilder(AccountType.BOT).setToken("").build().awaitReady();
         }
 
-        catch (LoginException e) { e.printStackTrace(); }
-        catch (InterruptedException e) { e.printStackTrace(); }
+        catch (Exception e) { e.printStackTrace(); }
 
 
         /*
@@ -74,7 +74,7 @@ public class TheBestPlugin extends JavaPlugin {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, Command cmd, @NotNull String label, @NotNull String[] args) {
 
         if (cmd.getName().equalsIgnoreCase("register-account") && args.length == 3) {
 
