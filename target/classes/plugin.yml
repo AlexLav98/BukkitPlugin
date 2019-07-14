@@ -1,3 +1,10 @@
 name: The_Best_Plugin
 main: com.alejandro.TheBestPlugin
-version: 1.0
+version: 1.1
+
+commands:
+  register-account:
+    description: Link this user's Discord and Minecraft accounts.
+    usage: /register-account <discord_id> <minecraft_uuid>
+    permission: op
+    permission-message: You can't use this. Ask an operator to register an account.

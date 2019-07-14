@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="TheBestPlugin">
+    <output-path>$PROJECT_DIR$/out/artifacts/TheBestPlugin</output-path>
+    <root id="archive" name="TheBestPlugin.jar">
+      <element id="module-output" name="TheBestPlugin" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
