@@ -12,10 +12,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,9 +19,41 @@ import java.util.UUID;
 
 public class TheBestPlugin extends JavaPlugin {
 
-    private JDA jda;
     private HashBiMap<Long, OfflinePlayer> linkedAccountsMap = HashBiMap.create();
     private AccountMapSerializationHandler serializationHandler;
+
+    private static TheBestPlugin instance = new TheBestPlugin();
+    private static JDA jda;
+
+    /**
+     * Static factory method for the main instance.
+     *
+     * @return The static JavaPlugin instance
+     */
+    public static TheBestPlugin getInstance() {
+
+        return instance;
+    }
+
+    /**
+     * The instance of the JDA used by the bot.
+     *
+     * @return Main JDA instance.
+     */
+    public static JDA getJDA() {
+
+        return jda;
+    }
+
+    /**
+     * Accesses the plugin's config.yml for the "auth" key
+     *
+     * @return A string representing the bot's auth token
+     */
+    private String getBotToken() {
+
+        return getConfig().getString("auth");
+    }
 
     @Override
     public void onEnable() {
@@ -94,13 +122,5 @@ public class TheBestPlugin extends JavaPlugin {
         }
 
         return false;
-    }
-
-    private String getBotToken() throws IOException {
-
-        FileReader tokenTextFileReader = new FileReader("..\\..\\..\\resources\\bot_token.txt");
-        BufferedReader tokenTextFileBufferedReader = new BufferedReader(tokenTextFileReader);
-
-        return tokenTextFileBufferedReader.readLine();
     }
 }

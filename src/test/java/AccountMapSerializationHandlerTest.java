@@ -1,4 +1,5 @@
 import com.alejandro.AccountMapSerializationHandler;
+import com.alejandro.TheBestPlugin;
 import com.google.common.collect.HashBiMap;
 import org.junit.*;
 
@@ -10,11 +11,11 @@ import static org.junit.Assert.*;
 
 public class AccountMapSerializationHandlerTest {
 
-    Connection SQLConnection;
-    HashBiMap<Long, String> testSerializedAccountsHashBiMap = HashBiMap.create();
+    private Connection SQLConnection;
+    private HashBiMap<Long, String> testSerializedAccountsHashBiMap = HashBiMap.create();
 
     @BeforeClass
-    public static void connectToDataBase() throws SQLException {
+    public static void initializeTestEnvironment() throws SQLException {
 
         Connection SQLConnection = DriverManager.getConnection("jdbc:mysql://198.245.51.96:3306/db_63051", "db_63051", "dc06f6ce63");
         if ( SQLConnection != null )
@@ -23,8 +24,10 @@ public class AccountMapSerializationHandlerTest {
 
     @Test
     public void accountMapShouldSerialize() {
-        
-        assertEquals(5, 5);
-        //AccountMapSerializationHandler testHandler = new AccountMapSerializationHandler(SQLConnection, )
+
+        AccountMapSerializationHandler testHandler =
+                new AccountMapSerializationHandler(SQLConnection, TheBestPlugin.getInstance(), TheBestPlugin.getJDA());
+
+        assertNotNull("Deserialized account map is empty!", testHandler.deserializeFromDatabase());
     }
 }

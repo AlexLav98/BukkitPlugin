@@ -5,8 +5,9 @@
 plugins {
     id 'java'
     id 'maven-publish'
-    id 'com.gradle.build-scan' version '2.1'
 }
+
+version '1.0'
 
 repositories {
     mavenLocal()
