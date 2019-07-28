@@ -5,13 +5,17 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Set;
 
 public class TheBestPlugin extends JavaPlugin {
 
@@ -25,8 +29,8 @@ public class TheBestPlugin extends JavaPlugin {
     {
         try {
 
-            var pluginYamlTextResource = getTextResource("plugin.yml");
-            var configYamlTextResource = getTextResource("config.yml");
+            Reader pluginYamlTextResource = getTextResource("plugin.yml");
+            Reader configYamlTextResource = getTextResource("config.yml");
 
             if (pluginYamlTextResource != null && configYamlTextResource != null) {
                 pluginYaml.load(pluginYamlTextResource);
@@ -66,7 +70,7 @@ public class TheBestPlugin extends JavaPlugin {
      */
     private void registerCommands() {
 
-        var configSection = pluginYaml.getConfigurationSection("commands");
+        ConfigurationSection configSection = pluginYaml.getConfigurationSection("commands");
 
         if (configSection == null) {
 
@@ -74,8 +78,8 @@ public class TheBestPlugin extends JavaPlugin {
             return;
         }
 
-        var commandNameStringSet = configSection.getKeys(false);
-        var commandExecutor = new MainCommandExecutor(this);
+        Set<String> commandNameStringSet = configSection.getKeys(false);
+        CommandExecutor commandExecutor  = new MainCommandExecutor(this);
 
         PluginCommand command;
         for (String commandName : commandNameStringSet) {

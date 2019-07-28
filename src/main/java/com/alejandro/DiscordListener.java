@@ -4,6 +4,7 @@ import com.google.common.collect.HashBiMap;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Server;
 
 public class DiscordListener extends ListenerAdapter {
 
@@ -18,12 +19,12 @@ public class DiscordListener extends ListenerAdapter {
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
 
-        var rawMessageContent       = event.getMessage().getContentDisplay();
-        var authorDiscordUsername   = event.getAuthor().getName();
-        var messagedChannelIDLong   = event.getChannel().getIdLong();
-        var mainServerInstance      = plugin.getServer();
-        var consoleChannelIDLong    = plugin.consoleChannelIdLong();
-        var inGameChannelIDLong     = plugin.inGameChannelIdLong();
+        String rawMessageContent       = event.getMessage().getContentDisplay();
+        String authorDiscordUsername   = event.getAuthor().getName();
+        long messagedChannelIDLong   = event.getChannel().getIdLong();
+        Server mainServerInstance      = plugin.getServer();
+        long consoleChannelIDLong    = plugin.consoleChannelIdLong();
+        long inGameChannelIDLong     = plugin.inGameChannelIdLong();
 
         if (event.getAuthor().isBot() || (messagedChannelIDLong != consoleChannelIDLong && messagedChannelIDLong != inGameChannelIDLong))
             return;
@@ -46,7 +47,7 @@ public class DiscordListener extends ListenerAdapter {
         }
         else if (messagedChannelIDLong == inGameChannelIDLong) {
 
-            var targetOfflinePlayer = linkedAccountsMap.get(event.getAuthor().getIdLong());
+            OfflinePlayer targetOfflinePlayer = linkedAccountsMap.get(event.getAuthor().getIdLong());
 
             /*
              * If the author of the message has a minecraft account linked to their discord account,
