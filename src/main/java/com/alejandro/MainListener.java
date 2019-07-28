@@ -1,34 +1,33 @@
 package com.alejandro;
 
-import com.google.common.collect.HashBiMap;
+import com.google.common.collect.BiMap;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.java.JavaPlugin;
-import sun.awt.AWTAccessor;
 
 public final class MainListener implements Listener {
 
-    public MainListener(HashBiMap<Long, OfflinePlayer> linkedAccountsMap, JDA jda) {
+    MainListener(BiMap<Long, OfflinePlayer> linkedAccountsMap, JDA jda, TheBestPlugin plugin) {
         this.linkedAccountsMap = linkedAccountsMap;
         this.jda = jda;
+        this.plugin = plugin;
 
-        inGameTextChannel = jda.getTextChannelById(597858140243099693L);
+        mainListenerWrapper = new MainListenerWrapper(jda, plugin);
+        inGameChannelIdLong = plugin.inGameChannelIdLong();
     }
 
-    private HashBiMap<Long, OfflinePlayer> linkedAccountsMap;
+    private BiMap<Long, OfflinePlayer> linkedAccountsMap;
     private JDA jda;
-    private TextChannel inGameTextChannel;
+    private MainListenerWrapper mainListenerWrapper;
+    private TheBestPlugin plugin;
+
+    private long inGameChannelIdLong;
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
@@ -36,9 +35,9 @@ public final class MainListener implements Listener {
         Long   authorUserIdLong       = linkedAccountsMap.inverse().get( event.getPlayer() );
         String authorDiscordUsername  = jda.getUserById( authorUserIdLong ).getName();
         String messageContent         = event.getMessage();
+        TextChannel inGameTextChannel = jda.getTextChannelById(plugin.inGameChannelIdLong());
 
         inGameTextChannel.sendMessage(String.format("**%s**: %s", authorDiscordUsername, messageContent)).queue();
-
     }
 
     /**
@@ -47,13 +46,13 @@ public final class MainListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
 
-        /*
-         * Simply calling getJoinMessage() includes these weird
-         * '§e' unicode characters. We filter them out.
-         */
-        String formattedJoinMessage = event.getJoinMessage().replaceAll("(?:§e)", "");
+        // getJoinMessage() can return null. Also, make sure to filter out
+        // weird minecraft unicode
+        String formattedJoinMessage = event.getJoinMessage() == null ?
+                "[JOIN MESSAGE ERROR]" : event.getJoinMessage().replace("\u00A7e", "");
 
-        inGameTextChannel.sendMessage("**" + formattedJoinMessage + "**").queue();
+        jda.getTextChannelById(inGameChannelIdLong)
+                .sendMessage("**" + formattedJoinMessage + "**").queue();
     }
 
     /**
@@ -65,9 +64,10 @@ public final class MainListener implements Listener {
         /*
          * Remove unicode. Explained above
          */
-        String formattedQuitMessage = event.getQuitMessage().replaceAll("(?:§e)", "");
+        String formattedQuitMessage = event.getQuitMessage().replace("\u00A7e", "");
 
-        inGameTextChannel.sendMessage("**" + formattedQuitMessage + "**").queue();
+        jda.getTextChannelById(inGameChannelIdLong)
+                .sendMessage("**" + formattedQuitMessage + "**").queue();
     }
 
     /**
@@ -76,15 +76,7 @@ public final class MainListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
 
-        inGameTextChannel.sendMessage("**" + event.getDeathMessage() + "**").queue();
+        jda.getTextChannelById(inGameChannelIdLong)
+                .sendMessage("**" + event.getDeathMessage() + "**").queue();
     }
 }
-
-
-
-
-
-
-
-
-

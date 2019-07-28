@@ -4,35 +4,38 @@ import com.google.common.collect.HashBiMap;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
+import org.bukkit.command.PluginCommand;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.UUID;
 
 public class TheBestPlugin extends JavaPlugin {
 
     private HashBiMap<Long, OfflinePlayer> linkedAccountsMap = HashBiMap.create();
     private AccountMapSerializationHandler serializationHandler;
+    private JDA jda;
 
-    private static TheBestPlugin instance = new TheBestPlugin();
-    private static JDA jda;
+    private static final YamlConfiguration pluginYaml = new YamlConfiguration();
+    private static final YamlConfiguration configYaml = new YamlConfiguration();
 
-    /**
-     * Static factory method for the main instance.
-     *
-     * @return The static JavaPlugin instance
-     */
-    public static TheBestPlugin getInstance() {
+    {
+        try {
 
-        return instance;
+            var pluginYamlTextResource = getTextResource("plugin.yml");
+            var configYamlTextResource = getTextResource("config.yml");
+
+            if (pluginYamlTextResource != null && configYamlTextResource != null) {
+                pluginYaml.load(pluginYamlTextResource);
+                configYaml.load(configYamlTextResource);
+            } else {
+
+                getLogger().warning("Yaml configuration loading has failed!");
+            }
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     /**
@@ -40,13 +43,57 @@ public class TheBestPlugin extends JavaPlugin {
      *
      * @return Main JDA instance.
      */
-    public static JDA getJDA() {
+    public JDA getJDA() {
 
         return jda;
     }
 
+    public HashBiMap<Long, OfflinePlayer> getLinkedAccountsMap() {
+
+        return linkedAccountsMap;
+    }
+
+    long inGameChannelIdLong() {
+        return configYaml.getLong("in_game_channel_id");
+    }
+
+    long consoleChannelIdLong() {
+        return configYaml.getLong("command_channel_id");
+    }
+
     /**
-     * Accesses the plugin's config.yml for the "auth" key
+     * Register all commands to have the main CommandExecutor instance.
+     */
+    private void registerCommands() {
+
+        var configSection = pluginYaml.getConfigurationSection("commands");
+
+        if (configSection == null) {
+
+            getLogger().warning("Configuration section \"commands\" was not found in plugin.yml!");
+            return;
+        }
+
+        var commandNameStringSet = configSection.getKeys(false);
+        var commandExecutor = new MainCommandExecutor(this);
+
+        PluginCommand command;
+        for (String commandName : commandNameStringSet) {
+
+            command = this.getCommand(commandName);
+
+            if (command == null) {
+
+                getLogger().warning("Command (" + commandName.toUpperCase() + ") was not found!");
+                continue;
+            }
+
+            command.setExecutor(commandExecutor);
+        }
+    }
+
+    /**
+     * Accesses the plugin's pluginYaml.yml for the "auth" key
      *
      * @return A string representing the bot's auth token
      */
@@ -65,6 +112,11 @@ public class TheBestPlugin extends JavaPlugin {
         try {
 
             jda = new JDABuilder(AccountType.BOT).setToken(getBotToken()).build().awaitReady();
+
+            /*
+             * Register the CommandExecutor for all commands
+             */
+            registerCommands();
         }
 
         catch (Exception e) { e.printStackTrace(); }
@@ -88,7 +140,7 @@ public class TheBestPlugin extends JavaPlugin {
             /*
              * Register event handler classes for the Minecraft plugin
              */
-            getServer().getPluginManager().registerEvents(new MainListener(linkedAccountsMap, jda), this);
+            getServer().getPluginManager().registerEvents(new MainListener(linkedAccountsMap, jda, this), this);
 
             // This has to be registered here because it depends on linkedAccountsMap
             jda.addEventListener(new DiscordListener(this, linkedAccountsMap));
@@ -102,25 +154,5 @@ public class TheBestPlugin extends JavaPlugin {
 
         // Serialize the map of account links and sent it to the database
         serializationHandler.serializeAndSend(linkedAccountsMap);
-    }
-
-    @Override
-    public boolean onCommand(@NotNull CommandSender sender, Command cmd, @NotNull String label, @NotNull String[] args) {
-
-        if (cmd.getName().equalsIgnoreCase("register-account") && args.length == 3) {
-
-            Long          userIdLong     = Long.valueOf(args[1]);
-            OfflinePlayer offlinePlayer  = Bukkit.getOfflinePlayer(UUID.fromString(args[2]));
-            linkedAccountsMap.put(userIdLong, offlinePlayer);
-
-            sender.sendMessage(ChatColor.GOLD + String.format("%s / %s has been registered",
-                    jda.getUserById(userIdLong).getName(),
-                    offlinePlayer.getName()
-            ) + ChatColor.RESET);
-
-            return true;
-        }
-
-        return false;
     }
 }
