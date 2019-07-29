@@ -2,7 +2,6 @@ package com.alejandro;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,15 +23,28 @@ public class MainCommandExecutor implements CommandExecutor {
 
         if (cmd.getName().equalsIgnoreCase("register-account") && args.length == 2) {
 
-            Long          userIdLong     = Long.valueOf(args[0]);
-            OfflinePlayer offlinePlayer  = Bukkit.getOfflinePlayer(UUID.fromString(args[1]));
+            String userId     = args[0];
+            String playerUUID = args[1];
 
-            plugin.getLinkedAccountsMap().put(userIdLong, offlinePlayer);
+            try {
 
-            sender.sendMessage(ChatColor.GOLD + String.format("%s / %s has been registered",
-                    plugin.getJDA().getUserById(userIdLong).getName(),
-                    offlinePlayer.getName()
-            ) + ChatColor.RESET);
+                String userName   = plugin.getJDA().getUserById(userId).getName();
+                String playerName = Bukkit.getOfflinePlayer(UUID.fromString(playerUUID)).getName();
+
+                plugin.getAccountRegistry().append(userId, playerUUID);
+
+                sender.sendMessage(ChatColor.GOLD + String.format("%s / %s has been registered",
+                        userName,
+                        playerName
+                ) + ChatColor.RESET);
+
+            } catch(PluginAccountRegistry.DuplicateAccountInformationException e) {
+
+                sender.sendMessage(ChatColor.RED + "Duplicate credentials detected! Check your info carefully" + ChatColor.RESET);
+            } catch(NullPointerException e) {
+
+                sender.sendMessage(ChatColor.RED + "Invalid information! Check your info carefully" + ChatColor.RESET);
+            }
 
             return true;
         }

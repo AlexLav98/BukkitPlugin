@@ -1,10 +1,8 @@
 package com.alejandro;
 
-import com.google.common.collect.HashBiMap;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.ConfigurationSection;
@@ -15,31 +13,38 @@ import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.Set;
 
 public class TheBestPlugin extends JavaPlugin {
 
-    private HashBiMap<Long, OfflinePlayer> linkedAccountsMap = HashBiMap.create();
-    private AccountMapSerializationHandler serializationHandler;
+    private PluginAccountRegistry accountRegistry;
+    private AccountDatabaseManager databaseManager;
     private JDA jda;
 
     private static final YamlConfiguration pluginYaml = new YamlConfiguration();
-    private static final YamlConfiguration configYaml = new YamlConfiguration();
+
+    private Connection SQLConnection = DriverManager.getConnection(
+            Objects.requireNonNull(getConfig().getString("db_url")),
+            getConfig().getString("db_user"),
+            getConfig().getString("db_pass")
+    );
 
     {
         try {
 
             Reader pluginYamlTextResource = getTextResource("plugin.yml");
-            Reader configYamlTextResource = getTextResource("config.yml");
 
-            if (pluginYamlTextResource != null && configYamlTextResource != null) {
+            if (pluginYamlTextResource != null) {
                 pluginYaml.load(pluginYamlTextResource);
-                configYaml.load(configYamlTextResource);
             } else {
 
                 getLogger().warning("Yaml configuration loading has failed!");
             }
         } catch (Exception e) { e.printStackTrace(); }
+    }
+
+    public TheBestPlugin() throws SQLException {
     }
 
     /**
@@ -52,17 +57,17 @@ public class TheBestPlugin extends JavaPlugin {
         return jda;
     }
 
-    public HashBiMap<Long, OfflinePlayer> getLinkedAccountsMap() {
+    PluginAccountRegistry getAccountRegistry() {
 
-        return linkedAccountsMap;
+        return accountRegistry;
     }
 
     long inGameChannelIdLong() {
-        return configYaml.getLong("in_game_channel_id");
+        return getConfig().getLong("in_game_channel_id");
     }
 
     long consoleChannelIdLong() {
-        return configYaml.getLong("command_channel_id");
+        return getConfig().getLong("command_channel_id");
     }
 
     /**
@@ -110,8 +115,7 @@ public class TheBestPlugin extends JavaPlugin {
     public void onEnable() {
 
         /*
-         * Initialize the global JDA instance, log the bot in,
-         * and register event listeners.
+         * Initialize the global JDA instance, and log the bot in.
          */
         try {
 
@@ -130,33 +134,41 @@ public class TheBestPlugin extends JavaPlugin {
          * Initialize the MySQL database
          */
         try {
-            Connection SQLConnection = DriverManager.getConnection("jdbc:mysql://198.245.51.96:3306/db_63051", "db_63051", "dc06f6ce63");
-            if ( SQLConnection != null )
-                getLogger().info("SQL CONNECTION ESTABLISHED");
 
-            /*
-             * Deserialize accountLinks in the database
-             * and store them in the linked accounts map.
-             */
-            serializationHandler = new AccountMapSerializationHandler(SQLConnection, this, jda);
-            linkedAccountsMap = serializationHandler.deserializeFromDatabase();
+            databaseManager = new AccountDatabaseManager(this, jda);
+
+            if ( SQLConnection != null ) {
+
+                getLogger().info("SQL connection established...");
+                accountRegistry = databaseManager.newAccountRegistry(SQLConnection.createStatement());
+
+            } else {
+
+                getLogger().warning("SQL Connection failed! Account registry could not load!");
+            }
 
             /*
              * Register event handler classes for the Minecraft plugin
              */
-            getServer().getPluginManager().registerEvents(new MainListener(linkedAccountsMap, jda, this), this);
+            getServer().getPluginManager().registerEvents(new MainListener(accountRegistry, jda, this), this);
 
-            // This has to be registered here because it depends on linkedAccountsMap
-            jda.addEventListener(new DiscordListener(this, linkedAccountsMap));
+        } catch (SQLException e) { e.printStackTrace(); getLogger().warning("An error has occurred and mySQL could not start!"); }
 
-        } catch (SQLException e) { e.printStackTrace(); getLogger().warning("AN ERROR HAS OCCURRED AND MYSQL COULD NOT START"); }
+        jda.addEventListener(new DiscordListener(this, accountRegistry));
     }
 
     @Override
     public void onDisable() {
         jda.shutdown();
 
-        // Serialize the map of account links and sent it to the database
-        serializationHandler.serializeAndSend(linkedAccountsMap);
+        // Serialize the account registry and send it to the database
+        try {
+
+            databaseManager.sendToDatabase( accountRegistry.serialize(), SQLConnection.createStatement() );
+
+        } catch (SQLException e) {
+
+            getLogger().warning("The account registry could not be sent to the database!");
+        }
     }
 }

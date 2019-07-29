@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d5e03870-db71-4629-8a85-d4cbe22c9eb4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d5e03870-db71-4629-8a85-d4cbe22c9eb4" name="Default Changelist" comment="Now using an account registry system">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/PluginAccountRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/PluginAccountRegistryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/AccountMapSerializationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/TheBestPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/TheBestPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GeneralUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GeneralUnitTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -38,7 +33,20 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="TheBestPlugin" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -47,11 +55,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="43" column="65" selection-start-line="43" selection-start-column="65" selection-end-line="43" selection-end-column="65" />
+            <state relative-caret-position="150">
+              <caret line="34" column="125" lean-forward="true" selection-start-line="34" selection-start-column="125" selection-end-line="34" selection-end-column="125" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#onPlayerChat#0;class#MainListener#0" />
                 <element signature="method#onPlayerJoin#0;class#MainListener#0" />
                 <element signature="method#onPlayerLeave#0;class#MainListener#0" />
                 <element signature="method#onPlayerDeath#0;class#MainListener#0" />
@@ -61,37 +68,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainListenerWrapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListenerWrapper.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/ChatTranscriptTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
+              <caret line="45" column="119" selection-start-line="45" selection-start-column="119" selection-end-line="45" selection-end-column="119" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,21 +79,61 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="18" column="73" lean-forward="true" selection-start-line="18" selection-start-column="73" selection-end-line="18" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/TheBestPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="81" column="73" lean-forward="true" selection-start-line="81" selection-start-column="73" selection-end-line="81" selection-end-column="73" />
+            <state relative-caret-position="134">
+              <caret line="59" column="47" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="initializer##0;class#TheBestPlugin#0" />
                 <element signature="docComment;method#getJDA#0;class#TheBestPlugin#0" />
                 <element signature="method#getJDA#0;class#TheBestPlugin#0" />
-                <element signature="method#getLinkedAccountsMap#0;class#TheBestPlugin#0" />
+                <element signature="method#getAccountRegistry#0;class#TheBestPlugin#0" />
+                <element signature="method#registerCommands#0;class#TheBestPlugin#0" />
                 <element signature="docComment;method#getBotToken#0;class#TheBestPlugin#0" />
                 <element signature="method#getBotToken#0;class#TheBestPlugin#0" />
                 <element signature="method#onEnable#0;class#TheBestPlugin#0" />
                 <element signature="method#onDisable#0;class#TheBestPlugin#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/PluginAccountRegistry.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#PluginAccountRegistry#0;class#PluginAccountRegistry#0" />
+                <element signature="method#getUserByPlayer#0;class#PluginAccountRegistry#0" />
+                <element signature="method#getPlayerByUser#0;class#PluginAccountRegistry#0" />
+                <element signature="class#DuplicateAccountInformationException#0;class#PluginAccountRegistry#0" />
+                <element signature="e#3844#3845#0" expanded="true" />
+                <element signature="e#3872#3873#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="15" column="59" lean-forward="true" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#newAccountRegistry#0;class#AccountDatabaseManager#0" />
               </folding>
             </state>
           </provider>
@@ -133,6 +153,7 @@
       <find>HashBiMap&lt;User, Player&gt;</find>
       <find>linkedAccountsMap</find>
       <find>YamlConfiguration</find>
+      <find>Deserialize</find>
     </findStrings>
     <replaceStrings>
       <replace>HashBiMap&lt;Long, Player&gt;</replace>
@@ -151,7 +172,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/DiscordPlayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/DiscordToMinecraftLink.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/AccountSerializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/AccountSerializationHandler.java" />
         <option value="$PROJECT_DIR$/src/test/java/TheBestPluginTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/main/META-INF/MANIFEST.MF" />
@@ -161,21 +181,26 @@
         <option value="$PROJECT_DIR$/src/main/resources/bot_token.txt" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/test/java/AccountMapSerializationHandlerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/AccountMapSerializationHandler.java" />
         <option value="$PROJECT_DIR$/src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker.txt" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/PlayerNameRetriever.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
         <option value="$PROJECT_DIR$/src/test/java/mocks/AsyncPlayerChatEventMock.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/ListenerWrapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListenerWrapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/MainListenerWrapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java" />
         <option value="$PROJECT_DIR$/src/test/java/ChatTranscriptTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/GeneralUnitTest.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/AccountMapSerializationHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/AccountSerializationHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/DuplicateAccountInformationException.java" />
+        <option value="$PROJECT_DIR$/src/test/java/PluginAccountRegistryTest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListener.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GeneralUnitTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/TheBestPlugin.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/PluginAccountRegistry.java" />
       </list>
     </option>
   </component>
@@ -377,32 +402,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GeneralUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TheBestPlugin.test" />
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
-        </ENTRIES>
-      </extension>
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GeneralUnitTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GeneralUnitTest.registerAccountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GeneralUnitTest.dataBaseConnectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TheBestPlugin.test" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="GeneralUnitTest" />
-      <option name="METHOD_NAME" value="registerAccountTest" />
+      <option name="METHOD_NAME" value="dataBaseConnectionTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -413,6 +417,16 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="GeneralUnitTest" />
       <option name="METHOD_NAME" value="textChannelValidIDTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PluginAccountRegistryTest.registrySerializationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TheBestPlugin.test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PluginAccountRegistryTest" />
+      <option name="METHOD_NAME" value="registrySerializationTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -432,19 +446,19 @@
     <list>
       <item itemvalue="Gradle.build plugin" />
       <item itemvalue="JUnit.TestRun" />
-      <item itemvalue="JUnit.GeneralUnitTest" />
-      <item itemvalue="JUnit.GeneralUnitTest.registerAccountTest" />
       <item itemvalue="JUnit.ChatTranscriptTest.minecraftChatToDiscordChatTest" />
       <item itemvalue="JUnit.ChatTranscriptTest" />
       <item itemvalue="JUnit.GeneralUnitTest.textChannelValidIDTest" />
+      <item itemvalue="JUnit.PluginAccountRegistryTest.registrySerializationTest" />
+      <item itemvalue="JUnit.GeneralUnitTest.dataBaseConnectionTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GeneralUnitTest.dataBaseConnectionTest" />
+        <item itemvalue="JUnit.PluginAccountRegistryTest.registrySerializationTest" />
         <item itemvalue="JUnit.GeneralUnitTest.textChannelValidIDTest" />
         <item itemvalue="JUnit.ChatTranscriptTest.minecraftChatToDiscordChatTest" />
         <item itemvalue="JUnit.ChatTranscriptTest" />
-        <item itemvalue="JUnit.GeneralUnitTest.registerAccountTest" />
-        <item itemvalue="JUnit.GeneralUnitTest" />
       </list>
     </recent_temporary>
   </component>
@@ -494,19 +508,17 @@
       <option name="project" value="LOCAL" />
       <updated>1564357280667</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Moving back to Java 8">
+      <created>1564358159909</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1564358159909</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ChatTranscriptTest_minecraftChatToDiscordChatTest - 2019.07.25 at 00h 15m 02s.xml">
-      <configuration name="ChatTranscriptTest.minecraftChatToDiscordChatTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ChatTranscriptTest_minecraftChatToDiscordChatTest - 2019.07.25 at 00h 16m 10s.xml">
-      <configuration name="ChatTranscriptTest.minecraftChatToDiscordChatTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ChatTranscriptTest_minecraftChatToDiscordChatTest - 2019.07.25 at 00h 29m 51s.xml">
-      <configuration name="ChatTranscriptTest.minecraftChatToDiscordChatTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ChatTranscriptTest_minecraftChatToDiscordChatTest - 2019.07.25 at 00h 29m 58s.xml">
       <configuration name="ChatTranscriptTest.minecraftChatToDiscordChatTest" configurationId="JUnit" />
     </history-entry>
@@ -528,6 +540,15 @@
     <history-entry file="GeneralUnitTest_textChannelValidIDTest - 2019.07.28 at 10h 57m 13s.xml">
       <configuration name="GeneralUnitTest.textChannelValidIDTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="PluginAccountRegistryTest_registrySerializationTest - 2019.07.28 at 22h 58m 26s.xml">
+      <configuration name="PluginAccountRegistryTest.registrySerializationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PluginAccountRegistryTest_registrySerializationTest - 2019.07.28 at 23h 00m 19s.xml">
+      <configuration name="PluginAccountRegistryTest.registrySerializationTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GeneralUnitTest_dataBaseConnectionTest - 2019.07.29 at 14h 54m 06s.xml">
+      <configuration name="GeneralUnitTest.dataBaseConnectionTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -542,7 +563,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2622108" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26156813" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -552,16 +573,16 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32974428" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.80205655" visible="true" weight="0.38088828" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.80205655" weight="0.38088828" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39973083" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32974428" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.7969152" weight="0.30417228" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.19794345" side_tool="true" visible="true" weight="0.38088828" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.29475102" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32974428" />
-      <window_info anchor="bottom" id="Build" order="11" weight="0.32974428" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.7962725" weight="0.30417228" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.20372751" side_tool="true" weight="0.30417228" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4993573" weight="0.29475102" />
+      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.32974428" />
+      <window_info anchor="bottom" id="Build" order="11" sideWeight="0.4993573" weight="0.32974428" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -570,7 +591,7 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Gradle" order="8" />
+      <window_info anchor="right" id="Gradle" order="8" weight="0.32969153" />
     </layout>
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -631,8 +652,23 @@
     <MESSAGE value="Attempting to use config.yml to store bot token" />
     <MESSAGE value="Latest working version" />
     <MESSAGE value="Moving back to Java 8" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moving back to Java 8" />
+    <MESSAGE value="Now using an account registry system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now using an account registry system" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java</url>
+          <line>21</line>
+          <properties class="com.alejandro.MainCommandExecutor" method="onCommand">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -658,35 +694,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/2.7.22/e35d08824983a8f40d8b699b7fee0e1cefb8480e/mockito-core-2.7.22-sources.jar!/org/mockito/junit/MockitoJUnitRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="160" column="29" lean-forward="true" selection-start-line="160" selection-start-column="29" selection-end-line="160" selection-end-column="29" />
-          <folding>
-            <element signature="e#6893#6894#0" expanded="true" />
-            <element signature="e#6929#6930#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/2.7.22/e35d08824983a8f40d8b699b7fee0e1cefb8480e/mockito-core-2.7.22-sources.jar!/org/mockito/internal/runners/StrictRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/2.7.22/e35d08824983a8f40d8b699b7fee0e1cefb8480e/mockito-core-2.7.22-sources.jar!/org/mockito/internal/runners/DefaultInternalRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="67" column="22" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
-          <folding>
-            <element signature="e#3234#3235#0" expanded="true" />
-            <element signature="e#3270#3271#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/bukkit/1.14.3-R0.1-SNAPSHOT/bukkit-1.14.3-R0.1-SNAPSHOT-sources.jar!/org/bukkit/Bukkit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
@@ -748,18 +755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="39" lean-forward="true" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/AccountMapSerializationHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#AccountMapSerializationHandler#0;class#AccountMapSerializationHandler#0" />
-            <element signature="method#sendToDatabase#0;class#AccountMapSerializationHandler#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -980,36 +975,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/mocks/AsyncPlayerChatEventMock.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/GeneralUnitTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="96" column="17" lean-forward="true" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="initializer##0;class#GeneralUnitTest#0" />
-            <element signature="method#registerAccountTest#0;class#GeneralUnitTest#0" />
-            <element signature="e#2818#2857#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1017,16 +982,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/ChatTranscriptTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="43" column="65" selection-start-line="43" selection-start-column="65" selection-end-line="43" selection-end-column="65" />
+        <state relative-caret-position="330">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#onPlayerChat#0;class#MainListener#0" />
-            <element signature="method#onPlayerJoin#0;class#MainListener#0" />
-            <element signature="method#onPlayerLeave#0;class#MainListener#0" />
-            <element signature="method#onPlayerDeath#0;class#MainListener#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/DuplicateAccountInformationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/PluginAccountRegistryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="38" column="64" selection-start-line="38" selection-start-column="64" selection-end-line="38" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1045,37 +1023,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ChatTranscriptTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        <state>
+          <caret line="18" column="73" lean-forward="true" selection-start-line="18" selection-start-column="73" selection-end-line="18" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/TheBestPlugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="59" column="47" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#getJDA#0;class#TheBestPlugin#0" />
+            <element signature="method#getJDA#0;class#TheBestPlugin#0" />
+            <element signature="method#getAccountRegistry#0;class#TheBestPlugin#0" />
+            <element signature="method#registerCommands#0;class#TheBestPlugin#0" />
+            <element signature="docComment;method#getBotToken#0;class#TheBestPlugin#0" />
+            <element signature="method#getBotToken#0;class#TheBestPlugin#0" />
+            <element signature="method#onEnable#0;class#TheBestPlugin#0" />
+            <element signature="method#onDisable#0;class#TheBestPlugin#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/GeneralUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="92" column="51" lean-forward="true" selection-start-line="92" selection-start-column="51" selection-end-line="92" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="initializer##0;class#GeneralUnitTest#0" />
+            <element signature="method#registerAccountTest#0;class#GeneralUnitTest#0" />
+            <element signature="method#textChannelValidIDTest#0;class#GeneralUnitTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="45" column="119" selection-start-line="45" selection-start-column="119" selection-end-line="45" selection-end-column="119" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListener.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+        <state relative-caret-position="180">
+          <caret line="15" column="59" lean-forward="true" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#newAccountRegistry#0;class#AccountDatabaseManager#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/TheBestPlugin.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="81" column="73" lean-forward="true" selection-start-line="81" selection-start-column="73" selection-end-line="81" selection-end-column="73" />
+        <state relative-caret-position="150">
+          <caret line="34" column="125" lean-forward="true" selection-start-line="34" selection-start-column="125" selection-end-line="34" selection-end-column="125" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="initializer##0;class#TheBestPlugin#0" />
-            <element signature="docComment;method#getJDA#0;class#TheBestPlugin#0" />
-            <element signature="method#getJDA#0;class#TheBestPlugin#0" />
-            <element signature="method#getLinkedAccountsMap#0;class#TheBestPlugin#0" />
-            <element signature="docComment;method#getBotToken#0;class#TheBestPlugin#0" />
-            <element signature="method#getBotToken#0;class#TheBestPlugin#0" />
-            <element signature="method#onEnable#0;class#TheBestPlugin#0" />
-            <element signature="method#onDisable#0;class#TheBestPlugin#0" />
+            <element signature="method#onPlayerJoin#0;class#MainListener#0" />
+            <element signature="method#onPlayerLeave#0;class#MainListener#0" />
+            <element signature="method#onPlayerDeath#0;class#MainListener#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/PluginAccountRegistry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#PluginAccountRegistry#0;class#PluginAccountRegistry#0" />
+            <element signature="method#getUserByPlayer#0;class#PluginAccountRegistry#0" />
+            <element signature="method#getPlayerByUser#0;class#PluginAccountRegistry#0" />
+            <element signature="class#DuplicateAccountInformationException#0;class#PluginAccountRegistry#0" />
+            <element signature="e#3844#3845#0" expanded="true" />
+            <element signature="e#3872#3873#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1138,7 +1176,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>TheBestPlugin</last-edited>
+          <last-edited>test|TheBestPlugin</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

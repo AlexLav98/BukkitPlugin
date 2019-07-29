@@ -41,7 +41,7 @@ public class GeneralUnitTest {
     @Mock
     private OfflinePlayer offlinePlayerMock;
 
-    @Mock
+    @Mock(name = "jda")
     private JDA jdaMock;
 
     @InjectMocks
@@ -65,7 +65,7 @@ public class GeneralUnitTest {
         PowerMockito.mockStatic(Bukkit.class);
 
         when(commandMock.getName()).thenReturn("register-account");
-        when(pluginMock.getLinkedAccountsMap()).thenReturn(instance);
+        //when(pluginMock.getLinkedAccountsMap()).thenReturn(instance);
         when(pluginMock.getJDA()).thenReturn(jdaMock);
         when(jdaMock.getUserById(any(Long.class))).thenReturn(mock(User.class));
         PowerMockito.when(Bukkit.getOfflinePlayer(any(UUID.class))).thenReturn(offlinePlayerMock);

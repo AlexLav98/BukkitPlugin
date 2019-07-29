@@ -1,6 +1,5 @@
 package com.alejandro;
 
-import com.google.common.collect.HashBiMap;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.bukkit.OfflinePlayer;
@@ -8,13 +7,13 @@ import org.bukkit.Server;
 
 public class DiscordListener extends ListenerAdapter {
 
-    DiscordListener(TheBestPlugin plugin, HashBiMap<Long, OfflinePlayer> linkedAccountsMap) {
+    DiscordListener(TheBestPlugin plugin, PluginAccountRegistry accountRegistry) {
         this.plugin = plugin;
-        this.linkedAccountsMap = linkedAccountsMap;
+        this.accountRegistry = accountRegistry;
     }
 
     private TheBestPlugin plugin;
-    private HashBiMap<Long, OfflinePlayer> linkedAccountsMap;
+    private PluginAccountRegistry accountRegistry;
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
@@ -47,7 +46,7 @@ public class DiscordListener extends ListenerAdapter {
         }
         else if (messagedChannelIDLong == inGameChannelIDLong) {
 
-            OfflinePlayer targetOfflinePlayer = linkedAccountsMap.get(event.getAuthor().getIdLong());
+            OfflinePlayer targetOfflinePlayer = accountRegistry.getPlayerByUser(event.getAuthor());
 
             /*
              * If the author of the message has a minecraft account linked to their discord account,

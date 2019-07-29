@@ -1,9 +1,7 @@
 package com.alejandro;
 
-import com.google.common.collect.BiMap;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.TextChannel;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -11,10 +9,12 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.util.Objects;
+
 public final class MainListener implements Listener {
 
-    MainListener(BiMap<Long, OfflinePlayer> linkedAccountsMap, JDA jda, TheBestPlugin plugin) {
-        this.linkedAccountsMap = linkedAccountsMap;
+    MainListener(PluginAccountRegistry accountRegistry, JDA jda, TheBestPlugin plugin) {
+        this.accountRegistry = accountRegistry;
         this.jda = jda;
         this.plugin = plugin;
 
@@ -22,7 +22,7 @@ public final class MainListener implements Listener {
         inGameChannelIdLong = plugin.inGameChannelIdLong();
     }
 
-    private BiMap<Long, OfflinePlayer> linkedAccountsMap;
+    private PluginAccountRegistry accountRegistry;
     private JDA jda;
     private MainListenerWrapper mainListenerWrapper;
     private TheBestPlugin plugin;
@@ -32,8 +32,7 @@ public final class MainListener implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
 
-        Long   authorUserIdLong       = linkedAccountsMap.inverse().get( event.getPlayer() );
-        String authorDiscordUsername  = jda.getUserById( authorUserIdLong ).getName();
+        String authorDiscordUsername  = Objects.requireNonNull(accountRegistry.getUserByPlayer(event.getPlayer())).getName();
         String messageContent         = event.getMessage();
         TextChannel inGameTextChannel = jda.getTextChannelById(plugin.inGameChannelIdLong());
 
