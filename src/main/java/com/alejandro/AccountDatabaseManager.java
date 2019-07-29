@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * Provides implementation to serialize players and discord users
  * and store them by their IDs in the MySQL database provided.
  */
-class AccountDatabaseManager {
+public class AccountDatabaseManager {
 
-    AccountDatabaseManager(TheBestPlugin plugin, JDA jda) {
+    public AccountDatabaseManager(TheBestPlugin plugin, JDA jda) {
         this.plugin = plugin;
         this.jda = jda;
     }
@@ -25,7 +25,7 @@ class AccountDatabaseManager {
         return new PluginAccountRegistry(retrieveAccountsFromDatabase(SQLStatement), plugin, jda);
     }
 
-    private String[][] retrieveAccountsFromDatabase(Statement SQLStatement) {
+    public String[][] retrieveAccountsFromDatabase(Statement SQLStatement) {
 
         ArrayList<String[]> accountArrayList = new ArrayList<>();
 

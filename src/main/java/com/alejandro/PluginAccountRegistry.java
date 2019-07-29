@@ -13,13 +13,13 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
 
-public class PluginAccountRegistry {
+class PluginAccountRegistry {
 
     private static Set<Pair<Long, UUID>> registry = new HashSet<>();
 
     private JDA jda;
 
-    public PluginAccountRegistry(String[][] serializedAccounts, TheBestPlugin plugin, JDA jda) {
+    PluginAccountRegistry(String[][] serializedAccounts, TheBestPlugin plugin, JDA jda) {
 
         this.jda = jda;
 

@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d5e03870-db71-4629-8a85-d4cbe22c9eb4" name="Default Changelist" comment="Now using an account registry system">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/PluginAccountRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/PluginAccountRegistryTest.java" afterDir="false" />
+    <list default="true" id="d5e03870-db71-4629-8a85-d4cbe22c9eb4" name="Default Changelist" comment="Added deserialization test for account manager">
+      <change afterPath="$PROJECT_DIR$/src/test/java/mocks/StatementMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.5.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/AccountMapSerializationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/TheBestPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/TheBestPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/alejandro/PluginAccountRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alejandro/PluginAccountRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/GeneralUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GeneralUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PluginAccountRegistryTest.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -56,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="34" column="125" lean-forward="true" selection-start-line="34" selection-start-column="125" selection-end-line="34" selection-end-column="125" />
+              <caret line="34" column="125" selection-start-line="34" selection-start-column="125" selection-end-line="34" selection-end-column="125" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#onPlayerJoin#0;class#MainListener#0" />
@@ -70,7 +77,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="675">
               <caret line="45" column="119" selection-start-line="45" selection-start-column="119" selection-end-line="45" selection-end-column="119" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -80,19 +87,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="18" column="73" lean-forward="true" selection-start-line="18" selection-start-column="73" selection-end-line="18" selection-end-column="73" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/TheBestPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="59" column="47" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+            <state relative-caret-position="326">
+              <caret line="114" column="27" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#getJDA#0;class#TheBestPlugin#0" />
@@ -108,16 +106,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/PluginAccountRegistry.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+              <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#PluginAccountRegistry#0;class#PluginAccountRegistry#0" />
+                <element signature="method#serialize#0;class#PluginAccountRegistry#0" />
                 <element signature="method#getUserByPlayer#0;class#PluginAccountRegistry#0" />
                 <element signature="method#getPlayerByUser#0;class#PluginAccountRegistry#0" />
+                <element signature="method#append#0;class#PluginAccountRegistry#0" />
                 <element signature="class#DuplicateAccountInformationException#0;class#PluginAccountRegistry#0" />
                 <element signature="e#3844#3845#0" expanded="true" />
                 <element signature="e#3872#3873#0" expanded="true" />
@@ -126,14 +126,43 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="15" column="59" lean-forward="true" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+            <state relative-caret-position="248">
+              <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#newAccountRegistry#0;class#AccountDatabaseManager#0" />
+                <element signature="method#retrieveAccountsFromDatabase#0;class#AccountDatabaseManager#0" />
+                <element signature="method#sendToDatabase#0;class#AccountDatabaseManager#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/GeneralUnitTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="initializer##0;class#GeneralUnitTest#0" />
+                <element signature="method#dataBaseConnectionTest#0;class#GeneralUnitTest#0" />
+                <element signature="method#textChannelValidIDTest#0;class#GeneralUnitTest#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/mocks/StatementMock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="20" column="55" lean-forward="true" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#186#210#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -195,12 +224,14 @@
         <option value="$PROJECT_DIR$/src/test/java/PluginAccountRegistryTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/DiscordListener.java" />
-        <option value="$PROJECT_DIR$/src/test/java/GeneralUnitTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/TheBestPlugin.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java" />
+        <option value="$PROJECT_DIR$/src/test/java/mocks/DatabaseConnectionMock.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GeneralUnitTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/mocks/StatementMock.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/alejandro/PluginAccountRegistry.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java" />
       </list>
     </option>
   </component>
@@ -293,6 +324,14 @@
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="TheBestPlugin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TheBestPlugin" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mocks" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -383,15 +422,6 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ChatTranscriptTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TheBestPlugin.test" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ChatTranscriptTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ChatTranscriptTest.minecraftChatToDiscordChatTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TheBestPlugin.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -407,6 +437,16 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="GeneralUnitTest" />
       <option name="METHOD_NAME" value="dataBaseConnectionTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GeneralUnitTest.retrieveAccountsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TheBestPlugin.test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GeneralUnitTest" />
+      <option name="METHOD_NAME" value="retrieveAccountsTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -447,18 +487,18 @@
       <item itemvalue="Gradle.build plugin" />
       <item itemvalue="JUnit.TestRun" />
       <item itemvalue="JUnit.ChatTranscriptTest.minecraftChatToDiscordChatTest" />
-      <item itemvalue="JUnit.ChatTranscriptTest" />
       <item itemvalue="JUnit.GeneralUnitTest.textChannelValidIDTest" />
       <item itemvalue="JUnit.PluginAccountRegistryTest.registrySerializationTest" />
       <item itemvalue="JUnit.GeneralUnitTest.dataBaseConnectionTest" />
+      <item itemvalue="JUnit.GeneralUnitTest.retrieveAccountsTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GeneralUnitTest.retrieveAccountsTest" />
         <item itemvalue="JUnit.GeneralUnitTest.dataBaseConnectionTest" />
         <item itemvalue="JUnit.PluginAccountRegistryTest.registrySerializationTest" />
         <item itemvalue="JUnit.GeneralUnitTest.textChannelValidIDTest" />
         <item itemvalue="JUnit.ChatTranscriptTest.minecraftChatToDiscordChatTest" />
-        <item itemvalue="JUnit.ChatTranscriptTest" />
       </list>
     </recent_temporary>
   </component>
@@ -515,31 +555,17 @@
       <option name="project" value="LOCAL" />
       <updated>1564358159909</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Now using an account registry system">
+      <created>1564433270989</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1564433270990</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ChatTranscriptTest_minecraftChatToDiscordChatTest - 2019.07.25 at 00h 29m 58s.xml">
-      <configuration name="ChatTranscriptTest.minecraftChatToDiscordChatTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GeneralUnitTest_textChannelValidIDTest - 2019.07.25 at 11h 29m 55s.xml">
-      <configuration name="GeneralUnitTest.textChannelValidIDTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ChatTranscriptTest_minecraftChatToDiscordChatTest - 2019.07.27 at 10h 13m 40s.xml">
-      <configuration name="ChatTranscriptTest.minecraftChatToDiscordChatTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ChatTranscriptTest_minecraftChatToDiscordChatTest - 2019.07.27 at 10h 18m 24s.xml">
-      <configuration name="ChatTranscriptTest.minecraftChatToDiscordChatTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ChatTranscriptTest_minecraftChatToDiscordChatTest - 2019.07.27 at 10h 20m 26s.xml">
-      <configuration name="ChatTranscriptTest.minecraftChatToDiscordChatTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GeneralUnitTest_textChannelValidIDTest - 2019.07.28 at 10h 56m 21s.xml">
-      <configuration name="GeneralUnitTest.textChannelValidIDTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GeneralUnitTest_textChannelValidIDTest - 2019.07.28 at 10h 57m 13s.xml">
-      <configuration name="GeneralUnitTest.textChannelValidIDTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="PluginAccountRegistryTest_registrySerializationTest - 2019.07.28 at 22h 58m 26s.xml">
       <configuration name="PluginAccountRegistryTest.registrySerializationTest" configurationId="JUnit" />
     </history-entry>
@@ -548,6 +574,27 @@
     </history-entry>
     <history-entry file="GeneralUnitTest_dataBaseConnectionTest - 2019.07.29 at 14h 54m 06s.xml">
       <configuration name="GeneralUnitTest.dataBaseConnectionTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GeneralUnitTest_retrieveAccountsTest - 2019.07.29 at 17h 56m 12s.xml">
+      <configuration name="GeneralUnitTest.retrieveAccountsTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GeneralUnitTest_retrieveAccountsTest - 2019.07.29 at 17h 58m 40s.xml">
+      <configuration name="GeneralUnitTest.retrieveAccountsTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GeneralUnitTest_retrieveAccountsTest - 2019.07.29 at 17h 59m 35s.xml">
+      <configuration name="GeneralUnitTest.retrieveAccountsTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GeneralUnitTest_retrieveAccountsTest - 2019.07.29 at 18h 00m 47s.xml">
+      <configuration name="GeneralUnitTest.retrieveAccountsTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GeneralUnitTest_retrieveAccountsTest - 2019.07.29 at 18h 01m 36s.xml">
+      <configuration name="GeneralUnitTest.retrieveAccountsTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GeneralUnitTest_retrieveAccountsTest - 2019.07.29 at 18h 06m 59s.xml">
+      <configuration name="GeneralUnitTest.retrieveAccountsTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GeneralUnitTest_retrieveAccountsTest - 2019.07.29 at 18h 07m 19s.xml">
+      <configuration name="GeneralUnitTest.retrieveAccountsTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -653,7 +700,8 @@
     <MESSAGE value="Latest working version" />
     <MESSAGE value="Moving back to Java 8" />
     <MESSAGE value="Now using an account registry system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now using an account registry system" />
+    <MESSAGE value="Added deserialization test for account manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added deserialization test for account manager" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -694,18 +742,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/bukkit/1.14.3-R0.1-SNAPSHOT/bukkit-1.14.3-R0.1-SNAPSHOT-sources.jar!/org/bukkit/Bukkit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="794" column="43" lean-forward="true" selection-start-line="794" selection-start-column="43" selection-end-line="794" selection-end-column="43" />
-          <folding>
-            <element signature="e#24102#24103#0" expanded="true" />
-            <element signature="e#24152#24153#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/PlayerNameRetriever.java" />
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/1.10.19/8269667b73d9616600359a9b0ba1b1c7d0cf7a97/mockito-core-1.10.19-sources.jar!/org/mockito/internal/exceptions/stacktrace/ConditionalStackTraceFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -740,9 +776,6 @@
           <caret line="58" column="18" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/reports/tests/test/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
       <provider selected="true" editor-type-id="text-editor">
@@ -982,30 +1015,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ChatTranscriptTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/DuplicateAccountInformationException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/PluginAccountRegistryTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="38" column="64" selection-start-line="38" selection-start-column="64" selection-end-line="38" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1030,10 +1043,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="34" column="125" selection-start-line="34" selection-start-column="125" selection-end-line="34" selection-end-column="125" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#onPlayerJoin#0;class#MainListener#0" />
+            <element signature="method#onPlayerLeave#0;class#MainListener#0" />
+            <element signature="method#onPlayerDeath#0;class#MainListener#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ChatTranscriptTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/jshell/jshell_console.snippet">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/TheBestPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="59" column="47" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+        <state relative-caret-position="326">
+          <caret line="114" column="27" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#getJDA#0;class#TheBestPlugin#0" />
@@ -1048,29 +1094,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/GeneralUnitTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="92" column="51" lean-forward="true" selection-start-line="92" selection-start-column="51" selection-end-line="92" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="initializer##0;class#GeneralUnitTest#0" />
-            <element signature="method#registerAccountTest#0;class#GeneralUnitTest#0" />
-            <element signature="method#textChannelValidIDTest#0;class#GeneralUnitTest#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainCommandExecutor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="675">
           <caret line="45" column="119" selection-start-line="45" selection-start-column="119" selection-end-line="45" selection-end-column="119" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1078,26 +1104,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java">
+    <entry file="file://$PROJECT_DIR$/build/reports/tests/test/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/PluginAccountRegistryTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="59" lean-forward="true" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+        <state relative-caret-position="82">
+          <caret line="38" column="29" lean-forward="true" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#newAccountRegistry#0;class#AccountDatabaseManager#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/MainListener.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/GeneralUnitTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="34" column="125" lean-forward="true" selection-start-line="34" selection-start-column="125" selection-end-line="34" selection-end-column="125" />
+        <state relative-caret-position="170">
+          <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#onPlayerJoin#0;class#MainListener#0" />
-            <element signature="method#onPlayerLeave#0;class#MainListener#0" />
-            <element signature="method#onPlayerDeath#0;class#MainListener#0" />
+            <element signature="initializer##0;class#GeneralUnitTest#0" />
+            <element signature="method#dataBaseConnectionTest#0;class#GeneralUnitTest#0" />
+            <element signature="method#textChannelValidIDTest#0;class#GeneralUnitTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/mocks/StatementMock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="20" column="55" lean-forward="true" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#186#210#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1105,15 +1144,29 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/PluginAccountRegistry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#PluginAccountRegistry#0;class#PluginAccountRegistry#0" />
+            <element signature="method#serialize#0;class#PluginAccountRegistry#0" />
             <element signature="method#getUserByPlayer#0;class#PluginAccountRegistry#0" />
             <element signature="method#getPlayerByUser#0;class#PluginAccountRegistry#0" />
+            <element signature="method#append#0;class#PluginAccountRegistry#0" />
             <element signature="class#DuplicateAccountInformationException#0;class#PluginAccountRegistry#0" />
             <element signature="e#3844#3845#0" expanded="true" />
             <element signature="e#3872#3873#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/alejandro/AccountDatabaseManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#retrieveAccountsFromDatabase#0;class#AccountDatabaseManager#0" />
+            <element signature="method#sendToDatabase#0;class#AccountDatabaseManager#0" />
           </folding>
         </state>
       </provider>
