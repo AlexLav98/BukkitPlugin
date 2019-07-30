@@ -1,4 +1,4 @@
-import com.alejandro.MainListenerWrapper;
+import com.alejandro.thebestplugin.MainListenerWrapper;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -1,4 +1,4 @@
-package com.alejandro;
+package com.alejandro.thebestplugin;
 
 import net.dv8tion.jda.core.JDA;
 
@@ -22,6 +22,7 @@ public class AccountDatabaseManager {
     private JDA jda;
 
     PluginAccountRegistry newAccountRegistry(Statement SQLStatement) {
+
         return new PluginAccountRegistry(retrieveAccountsFromDatabase(SQLStatement), plugin, jda);
     }
 

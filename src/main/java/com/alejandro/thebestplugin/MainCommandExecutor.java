@@ -1,4 +1,4 @@
-package com.alejandro;
+package com.alejandro.thebestplugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,6 +19,7 @@ public class MainCommandExecutor implements CommandExecutor {
     }
 
     @Override
+    //TODO Add class-oriented command executing system
     public boolean onCommand(@NotNull CommandSender sender, Command cmd, @NotNull String label, @NotNull String[] args) {
 
         if (cmd.getName().equalsIgnoreCase("register-account") && args.length == 2) {

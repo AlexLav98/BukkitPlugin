@@ -1,5 +1,5 @@
 name: The_Best_Plugin
-main: com.alejandro.TheBestPlugin
+main: com.alejandro.thebestplugin.TheBestPlugin
 version: 1.1
 
 commands:

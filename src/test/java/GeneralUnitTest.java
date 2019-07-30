@@ -1,6 +1,6 @@
-import com.alejandro.AccountDatabaseManager;
-import com.alejandro.MainCommandExecutor;
-import com.alejandro.TheBestPlugin;
+import com.alejandro.thebestplugin.AccountDatabaseManager;
+import com.alejandro.thebestplugin.MainCommandExecutor;
+import com.alejandro.thebestplugin.TheBestPlugin;
 import mocks.StatementMock;
 import net.dv8tion.jda.core.JDA;
 import org.bukkit.Bukkit;

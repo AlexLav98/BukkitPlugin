@@ -7,5 +7,5 @@ Class-Path: ./lib/opus-java-api-1.0.4.jar ./lib/jsr305-3.0.2.jar ./lib
  -java-natives-1.0.4.jar ./lib/protobuf-java-3.6.1.jar ./lib/mysql-con
  nector-java-8.0.16.jar ./lib/json-20160810.jar ./lib/annotations-16.0
  .1.jar
-Main-Class: com.alejandro.TheBestPlugin
+Main-Class: com.alejandro.thebestplugin.TheBestPlugin
 

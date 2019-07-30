@@ -1,4 +1,4 @@
-package com.alejandro;
+package com.alejandro.thebestplugin;
 
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
