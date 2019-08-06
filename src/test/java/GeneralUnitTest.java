@@ -1,5 +1,6 @@
 import com.alejandro.thebestplugin.AccountDatabaseManager;
 import com.alejandro.thebestplugin.MainCommandExecutor;
+import com.alejandro.thebestplugin.PluginAccountRegistry;
 import com.alejandro.thebestplugin.TheBestPlugin;
 import mocks.StatementMock;
 import net.dv8tion.jda.core.JDA;
@@ -92,10 +93,24 @@ public class GeneralUnitTest {
     @Test
     public void retrieveAccountsTest() {
 
-        AccountDatabaseManager databaseManager = new AccountDatabaseManager(pluginMock, jdaMock);
+        AccountDatabaseManager databaseManager = new AccountDatabaseManager(pluginMock);
 
         String[][] resultingData = databaseManager.retrieveAccountsFromDatabase(new StatementMock());
 
         assertTrue(Arrays.deepEquals(resultingData, new String[][]{{"Discord ID 1", "Player UUID 1"}, {"Discord ID 2", "Player UUID 2"}}));
+    }
+
+    @Test
+    public void serializeTest() {
+
+        String[][] inputAccounts = new String[][] {
+                {"342002891953012737", "67fe62ad-2efd-4a2a-8ae5-98cc925116fc"}
+        };
+
+        PluginAccountRegistry accountRegistryTest = new PluginAccountRegistry(inputAccounts, pluginMock);
+
+        String[][] data = accountRegistryTest.serialize();
+
+        assertTrue(Arrays.deepEquals(inputAccounts, data));
     }
 }

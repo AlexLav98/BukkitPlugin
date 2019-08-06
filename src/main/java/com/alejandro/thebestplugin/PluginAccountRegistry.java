@@ -1,8 +1,8 @@
 package com.alejandro.thebestplugin;
 
+import com.alejandro.thebestplugin.commands.RegisteredAccount;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.utils.tuple.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
@@ -12,112 +12,128 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
+import java.util.logging.Logger;
 
-class PluginAccountRegistry {
+public class PluginAccountRegistry {
 
-    private static Set<Pair<Long, UUID>> registry = new HashSet<>();
+    private static Set<RegisteredAccount> registry = new HashSet<>();
 
-    private JDA jda;
 
-    PluginAccountRegistry(String[][] serializedAccounts, TheBestPlugin plugin, JDA jda) {
+    private TheBestPlugin plugin;
 
-        this.jda = jda;
+    public PluginAccountRegistry(String[][] serializedAccountsArray, TheBestPlugin plugin) {
+        this.plugin = plugin;
+        registerAllAccountsIn(serializedAccountsArray);
+    }
 
-        final int DISCORD_ID_INDEX = 0;
-        final int UUID_INDEX = 1;
-
-        for (String[] account : serializedAccounts) {
-
-            // Get the raw values of the account and register them.
-
-            long accountDiscordID     = Long.valueOf(account[ DISCORD_ID_INDEX ]);
-            UUID accountMinecraftUUID = UUID.fromString(account[ UUID_INDEX ]);
-
-            registry.add(Pair.of(accountDiscordID, accountMinecraftUUID));
-
-            // Get the user names from the values and log them.
-
-            String accountDiscordUsername   = jda.getUserById(account[ DISCORD_ID_INDEX ]).getName();
-            String accountMinecraftUsername = Bukkit.getOfflinePlayer(UUID.fromString(account[ UUID_INDEX ])).getName();
-
-            plugin.getLogger().info("Deserialized account: " + accountDiscordUsername + " / " + accountMinecraftUsername);
+    private void registerAllAccountsIn(String[][] serializedAccounts) {
+        for (String[] currentSerializedAccount : serializedAccounts) {
+            registry.add(newRegisteredAccountFrom(currentSerializedAccount));
+            logAccount(currentSerializedAccount);
         }
     }
 
-    String[][] serialize() {
+    private RegisteredAccount newRegisteredAccountFrom(String[] account) {
+        String discordId = getAccountDiscordIdString(account);
+        String minecraftUUID = getAccountMinecraftUUIDString(account);
+        return RegisteredAccount.newInstance(discordId, minecraftUUID, plugin);
+    }
 
+    private String getAccountDiscordIdString(String[] account) {
         int DISCORD_ID_INDEX = 0;
+        return account[DISCORD_ID_INDEX];
+    }
+
+    private String getAccountMinecraftUUIDString(String[] account) {
         int UUID_INDEX = 1;
+        return account[UUID_INDEX];
+    }
 
-        String[][] data = new String[registry.size()][2];
+    private void logAccount(String[] account) {
+        String discordName = getAccountDiscordName(account);
+        String minecraftName = getAccountOfflinePlayerName(account);
+        getPluginLogger().info("Deserialized account: " + discordName + " / " + minecraftName);
+    }
 
-        Iterator<Pair<Long, UUID>> registryIterator = registry.iterator();
-        Pair<Long, UUID> currentPair;
+    private String getAccountDiscordName(String[] account) {
+        String discordId = getAccountDiscordIdString(account);
+        User accountDiscordUser = getUserByIdString(discordId);
+        return accountDiscordUser.getName();
+    }
 
-        for (int accountIndex = 0; accountIndex < registry.size(); accountIndex++) {
+    private String getAccountOfflinePlayerName(String[] account) {
+        String minecraftUUIDString = getAccountMinecraftUUIDString(account);
+        OfflinePlayer accountOfflinePlayer = getOfflinePlayerByUUIDString(minecraftUUIDString);
+        return accountOfflinePlayer.getName();
+    }
 
-            if (registryIterator.hasNext())
-                currentPair = registryIterator.next();
-            else
-                break;
+    private JDA getPluginJDA() {
+        return plugin.getJDA();
+    }
 
-            data[ accountIndex ][ DISCORD_ID_INDEX ] = Long.toString(currentPair.getLeft());
-            data[ accountIndex ][ UUID_INDEX ]       = currentPair.getRight().toString();
-        }
+    private Logger getPluginLogger() {
+        return plugin.getLogger();
+    }
+
+    private User getUserByIdString(String id) {
+        return getPluginJDA().getUserById(id);
+    }
+
+    private OfflinePlayer getOfflinePlayerByUUIDString(String UUIDString) {
+        UUID uuidFromString = UUID.fromString(UUIDString);
+        return Bukkit.getOfflinePlayer(uuidFromString);
+    }
+
+    public String[][] serialize() {
+
+        final int numberOfColumns = RegisteredAccount.numberOfColumns;
+
+        String[][] data = new String[registry.size()][numberOfColumns];
+        addAllAccountsInSerializedFormTo(data);
 
         return data;
     }
 
-    @Nullable User getUserByPlayer(@NotNull OfflinePlayer player) {
+    private void addAllAccountsInSerializedFormTo(String[][] serializedAccounts) {
+        Iterator<RegisteredAccount> registryIterator = registry.iterator();
+        RegisteredAccount currentAccount;
 
-        UUID targetPlayerUUID = player.getUniqueId();
-
-        Pair<Long, UUID> currentPair;
-
-        for (Pair<Long, UUID> longUUIDPair : registry) {
-
-            currentPair = longUUIDPair;
-
-            if (currentPair.getRight().equals(targetPlayerUUID))
-                return jda.getUserById(currentPair.getLeft());
+        for (int accountIndex = 0; accountIndex < registry.size(); accountIndex++) {
+            currentAccount = registryIterator.next();
+            serializedAccounts[accountIndex] = currentAccount.serializedForm;
         }
+    }
 
+    @Nullable User getUserByPlayer(@NotNull OfflinePlayer player) {
+        for (RegisteredAccount currentAccount : registry)
+            if (currentAccount.playerEquals(player))
+                return currentAccount.getUser();
         return null;
     }
 
     @Nullable OfflinePlayer getPlayerByUser(@NotNull User user) {
-
-        long targetUserId = user.getIdLong();
-
-        Pair<Long, UUID> currentPair;
-
-        for (Pair<Long, UUID> longUUIDPair : registry) {
-
-            currentPair = longUUIDPair;
-
-            if (currentPair.getLeft().equals(targetUserId))
-                return Bukkit.getOfflinePlayer(currentPair.getRight());
-        }
-
+        for (RegisteredAccount account : registry)
+            if (account.userEquals(user))
+                return account.getOfflinePlayer();
         return null;
     }
 
-    void append(String discordId, String playerUUIDString) {
+    public void addAccount(String discordId, String playerUUIDString) {
 
-        registry.forEach(currentPair -> {
+        if (credentialsAlreadyUsed(discordId, playerUUIDString))
+            throw new DuplicateAccountInformationException("Duplicate credentials, check your info carefully");
 
-            boolean containsReusedInfo =
-                    Long.toString(currentPair.getLeft()).equals(discordId) ||
-                            currentPair.getRight().toString().equals(playerUUIDString);
-
-            if (containsReusedInfo)
-                throw new DuplicateAccountInformationException("Account pair " + currentPair.toString() + " contains duplicate information of an existing account");
-        });
-
-        registry.add(Pair.of(Long.valueOf(discordId), UUID.fromString(playerUUIDString)));
+        registry.add(RegisteredAccount.newInstance(discordId, playerUUIDString, plugin));
     }
 
-    static class DuplicateAccountInformationException extends RuntimeException {
+    private boolean credentialsAlreadyUsed(String userID, String playerUUID) {
+        for (RegisteredAccount currentAccount : registry)
+            if (currentAccount.userIDEquals(userID) || currentAccount.playerUUIDEquals(playerUUID))
+                return true;
+        return false;
+    }
+
+    public static class DuplicateAccountInformationException extends RuntimeException {
         DuplicateAccountInformationException(String msg) {
             super(msg);
         }

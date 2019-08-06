@@ -1,17 +1,20 @@
 package com.alejandro.thebestplugin;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import com.alejandro.thebestplugin.commands.LocalCommand;
+import com.alejandro.thebestplugin.commands.RegisterAccountCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.UUID;
 
 public class MainCommandExecutor implements CommandExecutor {
 
     private TheBestPlugin plugin;
+
+    private LocalCommand[] commands = {new RegisterAccountCommand()};
 
     MainCommandExecutor(TheBestPlugin plugin) {
 
@@ -19,35 +22,41 @@ public class MainCommandExecutor implements CommandExecutor {
     }
 
     @Override
-    //TODO Add class-oriented command executing system
-    public boolean onCommand(@NotNull CommandSender sender, Command cmd, @NotNull String label, @NotNull String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
 
-        if (cmd.getName().equalsIgnoreCase("register-account") && args.length == 2) {
+        if (cmd.getName().equalsIgnoreCase("launch")) {
 
-            String userId     = args[0];
-            String playerUUID = args[1];
+            Player playerSender = (Player) sender;
 
-            try {
+            double targetDistance = Double.valueOf(args[0]); // meters
+            sender.sendMessage("Target distance = " + targetDistance);
 
-                String userName   = plugin.getJDA().getUserById(userId).getName();
-                String playerName = Bukkit.getOfflinePlayer(UUID.fromString(playerUUID)).getName();
+            double gravity = 9;  // m/s
+            sender.sendMessage("Gravity is " + gravity + " m/s");
 
-                plugin.getAccountRegistry().append(userId, playerUUID);
+            double resultingVelocity = Math.sqrt( targetDistance * gravity * (1 / Math.sin( 0.5 * Math.PI )) );
+            sender.sendMessage("Resultant velocity = " + resultingVelocity);
 
-                sender.sendMessage(ChatColor.GOLD + String.format("%s / %s has been registered",
-                        userName,
-                        playerName
-                ) + ChatColor.RESET);
+            double vectorValue = resultingVelocity / Math.sqrt( 2 );
+            sender.sendMessage("Vector values = " + vectorValue);
 
-            } catch(PluginAccountRegistry.DuplicateAccountInformationException e) {
+            Vector arrowLaunchVector = new Vector(vectorValue, vectorValue, 0.0);
 
-                sender.sendMessage(ChatColor.RED + "Duplicate credentials detected! Check your info carefully" + ChatColor.RESET);
-            } catch(NullPointerException e) {
+            playerSender.launchProjectile(Arrow.class, arrowLaunchVector);
 
-                sender.sendMessage(ChatColor.RED + "Invalid information! Check your info carefully" + ChatColor.RESET);
-            }
+            sender.sendMessage("Executed");
 
             return true;
+        }
+
+        for (LocalCommand currentCommand : commands) {
+
+            if ((currentCommand.getName().equalsIgnoreCase(cmd.getName()) || currentCommand.getAliases().contains(cmd.getName())) &&
+                    args.length == currentCommand.getNumberOfArgs()) {
+
+                currentCommand.execute(plugin, sender, args);
+                return true;
+            }
         }
 
         return false;

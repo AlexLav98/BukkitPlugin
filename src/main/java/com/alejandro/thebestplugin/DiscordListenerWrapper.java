@@ -4,8 +4,8 @@ import net.dv8tion.jda.core.JDA;
 
 public class DiscordListenerWrapper {
 
-    public DiscordListenerWrapper(JDA jda, TheBestPlugin plugin) {
-        this.jda = jda;
+    public DiscordListenerWrapper(TheBestPlugin plugin) {
+        this.jda = plugin.getJDA();
         this.plugin = plugin;
     }
 

@@ -16,14 +16,15 @@ public class DiscordListener extends ListenerAdapter {
     private PluginAccountRegistry accountRegistry;
 
     @Override
+    //TODO Make command feedback get sent to Discord Command console, as well
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
 
-        String rawMessageContent       = event.getMessage().getContentDisplay();
-        String authorDiscordUsername   = event.getAuthor().getName();
-        long messagedChannelIDLong   = event.getChannel().getIdLong();
-        Server mainServerInstance      = plugin.getServer();
-        long consoleChannelIDLong    = plugin.consoleChannelIdLong();
-        long inGameChannelIDLong     = plugin.inGameChannelIdLong();
+        String rawMessageContent      = event.getMessage().getContentDisplay();
+        String authorDiscordUsername  = event.getAuthor().getName();
+        long messagedChannelIDLong    = event.getChannel().getIdLong();
+        Server mainServerInstance     = plugin.getServer();
+        long consoleChannelIDLong     = plugin.consoleChannelIdLong();
+        long inGameChannelIDLong      = plugin.inGameChannelIdLong();
 
         if (event.getAuthor().isBot() || (messagedChannelIDLong != consoleChannelIDLong && messagedChannelIDLong != inGameChannelIDLong))
             return;

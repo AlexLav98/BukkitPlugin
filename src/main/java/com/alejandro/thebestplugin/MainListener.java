@@ -13,12 +13,12 @@ import java.util.Objects;
 
 public final class MainListener implements Listener {
 
-    MainListener(PluginAccountRegistry accountRegistry, JDA jda, TheBestPlugin plugin) {
+    MainListener(PluginAccountRegistry accountRegistry, TheBestPlugin plugin) {
         this.accountRegistry = accountRegistry;
-        this.jda = jda;
+        this.jda = plugin.getJDA();
         this.plugin = plugin;
 
-        mainListenerWrapper = new MainListenerWrapper(jda, plugin);
+        mainListenerWrapper = new MainListenerWrapper(plugin);
         inGameChannelIdLong = plugin.inGameChannelIdLong();
     }
 
@@ -32,11 +32,17 @@ public final class MainListener implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
 
-        String authorDiscordUsername  = Objects.requireNonNull(accountRegistry.getUserByPlayer(event.getPlayer())).getName();
-        String messageContent         = event.getMessage();
-        TextChannel inGameTextChannel = jda.getTextChannelById(plugin.inGameChannelIdLong());
+        try {
 
-        inGameTextChannel.sendMessage(String.format("**%s**: %s", authorDiscordUsername, messageContent)).queue();
+            String authorDiscordUsername  = Objects.requireNonNull(accountRegistry.getUserByPlayer(event.getPlayer())).getName();
+            String messageContent         = event.getMessage();
+            TextChannel inGameTextChannel = jda.getTextChannelById(plugin.inGameChannelIdLong());
+
+            inGameTextChannel.sendMessage(String.format("**%s**: %s", authorDiscordUsername, messageContent)).queue();
+
+        } catch (NullPointerException e) {
+            // Ignore exception
+        }
     }
 
     /**
@@ -78,4 +84,21 @@ public final class MainListener implements Listener {
         jda.getTextChannelById(inGameChannelIdLong)
                 .sendMessage("**" + event.getDeathMessage() + "**").queue();
     }
+
+//    @EventHandler
+//    public void arrowKillAura(EntityTargetLivingEntityEvent event) {
+//
+//        if (!(event.getTarget() instanceof Player))
+//            return;
+//
+//        Player target = (Player) event.getTarget();
+//        Player hydroPage90 = Bukkit.getPlayer(UUID.fromString("67fe62ad-2efd-4a2a-8ae5-98cc925116fc"));
+//
+//        if (!target.equals(hydroPage90))
+//            return;
+//
+//        Vector testVector  = new Vector(5.0, 5.0, 0.0);
+//
+//        hydroPage90.launchProjectile(Arrow.class, testVector);
+//    }
 }

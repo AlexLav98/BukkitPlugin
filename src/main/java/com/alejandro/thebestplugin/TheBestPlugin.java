@@ -57,7 +57,7 @@ public class TheBestPlugin extends JavaPlugin {
         return jda;
     }
 
-    PluginAccountRegistry getAccountRegistry() {
+    public PluginAccountRegistry getAccountRegistry() {
 
         return accountRegistry;
     }
@@ -135,7 +135,7 @@ public class TheBestPlugin extends JavaPlugin {
          */
         try {
 
-            databaseManager = new AccountDatabaseManager(this, jda);
+            databaseManager = new AccountDatabaseManager(this);
 
             if ( SQLConnection != null ) {
 
@@ -150,7 +150,7 @@ public class TheBestPlugin extends JavaPlugin {
             /*
              * Register event handler classes for the Minecraft plugin
              */
-            getServer().getPluginManager().registerEvents(new MainListener(accountRegistry, jda, this), this);
+            getServer().getPluginManager().registerEvents(new MainListener(accountRegistry, this), this);
 
         } catch (SQLException e) { e.printStackTrace(); getLogger().warning("An error has occurred and mySQL could not start!"); }
 

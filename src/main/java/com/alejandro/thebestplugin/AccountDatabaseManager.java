@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class AccountDatabaseManager {
 
-    public AccountDatabaseManager(TheBestPlugin plugin, JDA jda) {
+    public AccountDatabaseManager(TheBestPlugin plugin) {
         this.plugin = plugin;
-        this.jda = jda;
+        this.jda = plugin.getJDA();
     }
 
     private TheBestPlugin plugin;
@@ -23,7 +23,7 @@ public class AccountDatabaseManager {
 
     PluginAccountRegistry newAccountRegistry(Statement SQLStatement) {
 
-        return new PluginAccountRegistry(retrieveAccountsFromDatabase(SQLStatement), plugin, jda);
+        return new PluginAccountRegistry(retrieveAccountsFromDatabase(SQLStatement), plugin);
     }
 
     public String[][] retrieveAccountsFromDatabase(Statement SQLStatement) {
@@ -64,7 +64,7 @@ public class AccountDatabaseManager {
 
             try {
 
-                SQLStatement.executeQuery("INSERT INTO `USERS` (`discord_ID`, `minecraft_ID`) VALUES (" + discordId + ", '" + playerUUID + "');");
+                SQLStatement.executeQuery("INSERT INTO `USERS` (`discord_ID`, `minecraft_ID`) VALUES ('" + discordId + "', '" + playerUUID + "');");
 
             } catch (SQLException e) {
 

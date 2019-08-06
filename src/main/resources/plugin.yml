@@ -8,3 +8,7 @@ commands:
     usage: /register-account <discord_id> <minecraft_uuid>
     permission: op
     permission-message: You can't use this. Ask an operator to register an account.
+  launch:
+    description: something
+    usage: N word
+    permission: op
