@@ -1,5 +1,7 @@
-package com.alejandro.thebestplugin;
+package com.alejandro.thebestplugin.listeners;
 
+import com.alejandro.thebestplugin.TheBestPlugin;
+import com.alejandro.thebestplugin.accounts.PluginAccountRegistry;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.bukkit.OfflinePlayer;
@@ -7,13 +9,13 @@ import org.bukkit.Server;
 
 public class DiscordListener extends ListenerAdapter {
 
-    DiscordListener(TheBestPlugin plugin, PluginAccountRegistry accountRegistry) {
+    public DiscordListener(TheBestPlugin plugin, PluginAccountRegistry accountRegistry) {
         this.plugin = plugin;
         this.accountRegistry = accountRegistry;
     }
 
-    private TheBestPlugin plugin;
-    private PluginAccountRegistry accountRegistry;
+    private final TheBestPlugin plugin;
+    private final PluginAccountRegistry accountRegistry;
 
     @Override
     //TODO Make command feedback get sent to Discord Command console, as well

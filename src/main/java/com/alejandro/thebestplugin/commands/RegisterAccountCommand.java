@@ -1,7 +1,7 @@
 package com.alejandro.thebestplugin.commands;
 
-import com.alejandro.thebestplugin.PluginAccountRegistry;
 import com.alejandro.thebestplugin.TheBestPlugin;
+import com.alejandro.thebestplugin.accounts.PluginAccountRegistry;
 import net.dv8tion.jda.core.entities.User;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;

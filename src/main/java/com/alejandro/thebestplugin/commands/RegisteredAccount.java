@@ -14,9 +14,9 @@ public class RegisteredAccount {
     public static final int numberOfColumns = 2;
 
     private Pair<User, OfflinePlayer> account;
-    public String[] serializedForm = new String[numberOfColumns];
+    public final String[] serializedForm = new String[numberOfColumns];
 
-    private JDA jda;
+    private final JDA jda;
 
     private RegisteredAccount(String discordID, String minecraftUUID, TheBestPlugin plugin) {
         this.jda = plugin.getJDA();

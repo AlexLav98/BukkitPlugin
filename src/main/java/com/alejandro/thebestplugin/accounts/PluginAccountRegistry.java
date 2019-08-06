@@ -1,5 +1,6 @@
-package com.alejandro.thebestplugin;
+package com.alejandro.thebestplugin.accounts;
 
+import com.alejandro.thebestplugin.TheBestPlugin;
 import com.alejandro.thebestplugin.commands.RegisteredAccount;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.User;
@@ -16,10 +17,9 @@ import java.util.logging.Logger;
 
 public class PluginAccountRegistry {
 
-    private static Set<RegisteredAccount> registry = new HashSet<>();
+    private static final Set<RegisteredAccount> registry = new HashSet<>();
 
-
-    private TheBestPlugin plugin;
+    private final TheBestPlugin plugin;
 
     public PluginAccountRegistry(String[][] serializedAccountsArray, TheBestPlugin plugin) {
         this.plugin = plugin;
@@ -104,14 +104,14 @@ public class PluginAccountRegistry {
         }
     }
 
-    @Nullable User getUserByPlayer(@NotNull OfflinePlayer player) {
+    public @Nullable User getUserByPlayer(@NotNull OfflinePlayer player) {
         for (RegisteredAccount currentAccount : registry)
             if (currentAccount.playerEquals(player))
                 return currentAccount.getUser();
         return null;
     }
 
-    @Nullable OfflinePlayer getPlayerByUser(@NotNull User user) {
+    public @Nullable OfflinePlayer getPlayerByUser(@NotNull User user) {
         for (RegisteredAccount account : registry)
             if (account.userEquals(user))
                 return account.getOfflinePlayer();
@@ -121,7 +121,7 @@ public class PluginAccountRegistry {
     public void addAccount(String discordId, String playerUUIDString) {
 
         if (credentialsAlreadyUsed(discordId, playerUUIDString))
-            throw new DuplicateAccountInformationException("Duplicate credentials, check your info carefully");
+            throw new DuplicateAccountInformationException();
 
         registry.add(RegisteredAccount.newInstance(discordId, playerUUIDString, plugin));
     }
@@ -133,9 +133,9 @@ public class PluginAccountRegistry {
         return false;
     }
 
-    public static class DuplicateAccountInformationException extends RuntimeException {
-        DuplicateAccountInformationException(String msg) {
-            super(msg);
+    static class DuplicateAccountInformationException extends RuntimeException {
+        DuplicateAccountInformationException() {
+            super("Duplicate credentials, check your info carefully");
         }
     }
 }

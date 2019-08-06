@@ -1,11 +1,9 @@
-import com.alejandro.thebestplugin.MainListenerWrapper;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Answers;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -14,6 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
  * Will test if Minecraft chat is sent to Discord.
  * Will test if Discord chat is sent to Minecraft.
  */
+@SuppressWarnings("EmptyMethod")
 @RunWith(MockitoJUnitRunner.class)
 public class ChatTranscriptTest {
 
@@ -25,9 +24,6 @@ public class ChatTranscriptTest {
 
     @Mock(answer = Answers.RETURNS_MOCKS)
     TextChannel textChannelMock;
-
-    @InjectMocks
-    private MainListenerWrapper mainListenerWrapper;
 
     @Test
     public void nothing() {

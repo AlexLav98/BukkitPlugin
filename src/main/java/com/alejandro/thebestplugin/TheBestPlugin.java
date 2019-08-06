@@ -1,5 +1,10 @@
 package com.alejandro.thebestplugin;
 
+import com.alejandro.thebestplugin.accounts.AccountDatabaseManager;
+import com.alejandro.thebestplugin.accounts.PluginAccountRegistry;
+import com.alejandro.thebestplugin.commands.MainCommandExecutor;
+import com.alejandro.thebestplugin.listeners.DiscordListener;
+import com.alejandro.thebestplugin.listeners.MainListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -24,7 +29,7 @@ public class TheBestPlugin extends JavaPlugin {
 
     private static final YamlConfiguration pluginYaml = new YamlConfiguration();
 
-    private Connection SQLConnection = DriverManager.getConnection(
+    private final Connection SQLConnection = DriverManager.getConnection(
             Objects.requireNonNull(getConfig().getString("db_url")),
             getConfig().getString("db_user"),
             getConfig().getString("db_pass")
@@ -62,11 +67,11 @@ public class TheBestPlugin extends JavaPlugin {
         return accountRegistry;
     }
 
-    long inGameChannelIdLong() {
+    public long inGameChannelIdLong() {
         return getConfig().getLong("in_game_channel_id");
     }
 
-    long consoleChannelIdLong() {
+    public long consoleChannelIdLong() {
         return getConfig().getLong("command_channel_id");
     }
 

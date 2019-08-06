@@ -1,9 +1,9 @@
-package com.alejandro.thebestplugin;
+package com.alejandro.thebestplugin.accounts;
 
 class AccountInfo {
 
-    private String userID;
-    private String playerUUID;
+    private final String userID;
+    private final String playerUUID;
 
     AccountInfo(String userID, String playerUUID) {
         this.userID = userID;

@@ -1,7 +1,6 @@
-package com.alejandro.thebestplugin;
+package com.alejandro.thebestplugin.commands;
 
-import com.alejandro.thebestplugin.commands.LocalCommand;
-import com.alejandro.thebestplugin.commands.RegisterAccountCommand;
+import com.alejandro.thebestplugin.TheBestPlugin;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,11 +11,11 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainCommandExecutor implements CommandExecutor {
 
-    private TheBestPlugin plugin;
+    private final TheBestPlugin plugin;
 
-    private LocalCommand[] commands = {new RegisterAccountCommand()};
+    private final LocalCommand[] commands = {new RegisterAccountCommand()};
 
-    MainCommandExecutor(TheBestPlugin plugin) {
+    public MainCommandExecutor(TheBestPlugin plugin) {
 
         this.plugin = plugin;
     }

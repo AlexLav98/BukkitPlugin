@@ -1,5 +1,7 @@
-package com.alejandro.thebestplugin;
+package com.alejandro.thebestplugin.listeners;
 
+import com.alejandro.thebestplugin.TheBestPlugin;
+import com.alejandro.thebestplugin.accounts.PluginAccountRegistry;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.bukkit.event.EventHandler;
@@ -13,21 +15,19 @@ import java.util.Objects;
 
 public final class MainListener implements Listener {
 
-    MainListener(PluginAccountRegistry accountRegistry, TheBestPlugin plugin) {
+    public MainListener(PluginAccountRegistry accountRegistry, TheBestPlugin plugin) {
         this.accountRegistry = accountRegistry;
         this.jda = plugin.getJDA();
         this.plugin = plugin;
 
-        mainListenerWrapper = new MainListenerWrapper(plugin);
         inGameChannelIdLong = plugin.inGameChannelIdLong();
     }
 
-    private PluginAccountRegistry accountRegistry;
-    private JDA jda;
-    private MainListenerWrapper mainListenerWrapper;
-    private TheBestPlugin plugin;
+    private final PluginAccountRegistry accountRegistry;
+    private final JDA jda;
+    private final TheBestPlugin plugin;
 
-    private long inGameChannelIdLong;
+    private final long inGameChannelIdLong;
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {

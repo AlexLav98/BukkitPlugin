@@ -1,7 +1,7 @@
-import com.alejandro.thebestplugin.AccountDatabaseManager;
-import com.alejandro.thebestplugin.MainCommandExecutor;
-import com.alejandro.thebestplugin.PluginAccountRegistry;
 import com.alejandro.thebestplugin.TheBestPlugin;
+import com.alejandro.thebestplugin.accounts.AccountDatabaseManager;
+import com.alejandro.thebestplugin.accounts.PluginAccountRegistry;
+import com.alejandro.thebestplugin.commands.MainCommandExecutor;
 import mocks.StatementMock;
 import net.dv8tion.jda.core.JDA;
 import org.bukkit.Bukkit;
@@ -46,7 +46,7 @@ public class GeneralUnitTest {
     @InjectMocks
     private MainCommandExecutor commandExecutorUnderTest;
 
-    private YamlConfiguration config = new YamlConfiguration();
+    private final YamlConfiguration config = new YamlConfiguration();
 
     // Initialize the yaml config
     {

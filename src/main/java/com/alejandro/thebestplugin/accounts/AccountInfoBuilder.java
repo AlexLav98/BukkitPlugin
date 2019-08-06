@@ -1,4 +1,4 @@
-package com.alejandro.thebestplugin;
+package com.alejandro.thebestplugin.accounts;
 
 public class AccountInfoBuilder {
 

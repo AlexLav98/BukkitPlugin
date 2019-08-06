@@ -10,10 +10,11 @@ import java.util.List;
 /**
  * Every command should have a name, aliases, and an execution method
  */
-public abstract class LocalCommand {
+@SuppressWarnings("SameParameterValue")
+abstract class LocalCommand {
 
-    private String name;
-    private int numberOfArgs;
+    private final String name;
+    private final int numberOfArgs;
     private List<String> aliases;
 
     LocalCommand(String name, int numberOfArgs) {

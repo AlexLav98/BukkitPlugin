@@ -1,6 +1,6 @@
-package com.alejandro.thebestplugin;
+package com.alejandro.thebestplugin.accounts;
 
-import net.dv8tion.jda.core.JDA;
+import com.alejandro.thebestplugin.TheBestPlugin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,13 +15,11 @@ public class AccountDatabaseManager {
 
     public AccountDatabaseManager(TheBestPlugin plugin) {
         this.plugin = plugin;
-        this.jda = plugin.getJDA();
     }
 
-    private TheBestPlugin plugin;
-    private JDA jda;
+    private final TheBestPlugin plugin;
 
-    PluginAccountRegistry newAccountRegistry(Statement SQLStatement) {
+    public PluginAccountRegistry newAccountRegistry(Statement SQLStatement) {
 
         return new PluginAccountRegistry(retrieveAccountsFromDatabase(SQLStatement), plugin);
     }
@@ -52,7 +50,7 @@ public class AccountDatabaseManager {
         return accountArrayList.toArray(new String[0][]);
     }
 
-    void sendToDatabase(String[][] data, Statement SQLStatement) {
+    public void sendToDatabase(String[][] data, Statement SQLStatement) {
 
         byte DISCORD_ID_INDEX = 0;
         byte UUID_INDEX = 1;
