@@ -13,11 +13,11 @@ import java.util.ArrayList;
  */
 public class AccountDatabaseManager {
 
+    private final TheBestPlugin plugin;
+
     public AccountDatabaseManager(TheBestPlugin plugin) {
         this.plugin = plugin;
     }
-
-    private final TheBestPlugin plugin;
 
     public PluginAccountRegistry newAccountRegistry(Statement SQLStatement) {
 

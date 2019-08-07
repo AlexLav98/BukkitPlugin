@@ -10,19 +10,26 @@ class AccountInfo {
         this.playerUUID = playerUUID;
     }
 
-    public boolean userIDEquals(String expectedUserID) {
+    public boolean hasDuplicatesOf(AccountInfo accountInfo) {
+        String userID = accountInfo.getUserID();
+        String playerUUID = accountInfo.getPlayerUUID();
+
+        return accountInfo.userIDEquals(userID) || accountInfo.playerUUIDEquals(playerUUID);
+    }
+
+    private boolean userIDEquals(String expectedUserID) {
         return userID.equals(expectedUserID);
     }
 
-    public boolean playerUUIDEquals(String expectedUUID) {
+    private boolean playerUUIDEquals(String expectedUUID) {
         return playerUUID.equals(expectedUUID);
     }
 
-    public String getUserID() {
+    String getUserID() {
         return userID;
     }
 
-    public String getPlayerUUID() {
+    String getPlayerUUID() {
         return playerUUID;
     }
 }

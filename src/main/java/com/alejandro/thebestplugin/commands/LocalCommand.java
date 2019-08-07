@@ -30,15 +30,15 @@ abstract class LocalCommand {
         this.aliases = Arrays.asList(aliases);
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public int getNumberOfArgs() {
+    int getNumberOfArgs() {
         return numberOfArgs;
     }
 
-    public List<String> getAliases() {
+    List<String> getAliases() {
         return aliases;
     }
 

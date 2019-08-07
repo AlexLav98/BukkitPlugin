@@ -1,7 +1,6 @@
 package com.alejandro.thebestplugin.accounts;
 
 import com.alejandro.thebestplugin.TheBestPlugin;
-import com.alejandro.thebestplugin.commands.RegisteredAccount;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.User;
 import org.bukkit.Bukkit;
@@ -18,8 +17,11 @@ import java.util.logging.Logger;
 public class PluginAccountRegistry {
 
     private static final Set<RegisteredAccount> registry = new HashSet<>();
+    private static final int DISCORD_ID_INDEX = 0;
+    private static final int UUID_INDEX = 1;
 
     private final TheBestPlugin plugin;
+    private String[] account;
 
     public PluginAccountRegistry(String[][] serializedAccountsArray, TheBestPlugin plugin) {
         this.plugin = plugin;
@@ -27,43 +29,39 @@ public class PluginAccountRegistry {
     }
 
     private void registerAllAccountsIn(String[][] serializedAccounts) {
-        for (String[] currentSerializedAccount : serializedAccounts) {
-            registry.add(newRegisteredAccountFrom(currentSerializedAccount));
-            logAccount(currentSerializedAccount);
+        for (String[] account : serializedAccounts) {
+            this.account = account;
+            registry.add(new RegisteredAccount(getAccountInfo(), getPluginJDA()));
+
+            logAccount();
         }
     }
 
-    private RegisteredAccount newRegisteredAccountFrom(String[] account) {
-        String discordId = getAccountDiscordIdString(account);
-        String minecraftUUID = getAccountMinecraftUUIDString(account);
-        return RegisteredAccount.newInstance(discordId, minecraftUUID, plugin);
+    private AccountInfo getAccountInfo() {
+        String userID = account[DISCORD_ID_INDEX];
+        String playerUUID = account[UUID_INDEX];
+
+        return new AccountInfoBuilder()
+                .setUserID(userID)
+                .setPlayerUUID(playerUUID)
+                .build();
     }
 
-    private String getAccountDiscordIdString(String[] account) {
-        int DISCORD_ID_INDEX = 0;
-        return account[DISCORD_ID_INDEX];
-    }
-
-    private String getAccountMinecraftUUIDString(String[] account) {
-        int UUID_INDEX = 1;
-        return account[UUID_INDEX];
-    }
-
-    private void logAccount(String[] account) {
-        String discordName = getAccountDiscordName(account);
-        String minecraftName = getAccountOfflinePlayerName(account);
+    private void logAccount() {
+        String discordName = getAccountDiscordName();
+        String minecraftName = getAccountOfflinePlayerName();
         getPluginLogger().info("Deserialized account: " + discordName + " / " + minecraftName);
     }
 
-    private String getAccountDiscordName(String[] account) {
-        String discordId = getAccountDiscordIdString(account);
-        User accountDiscordUser = getUserByIdString(discordId);
+    private String getAccountDiscordName() {
+        String userID = account[DISCORD_ID_INDEX];
+        User accountDiscordUser = getUserByIdString(userID);
         return accountDiscordUser.getName();
     }
 
-    private String getAccountOfflinePlayerName(String[] account) {
-        String minecraftUUIDString = getAccountMinecraftUUIDString(account);
-        OfflinePlayer accountOfflinePlayer = getOfflinePlayerByUUIDString(minecraftUUIDString);
+    private String getAccountOfflinePlayerName() {
+        String playerUUID = account[UUID_INDEX];
+        OfflinePlayer accountOfflinePlayer = getOfflinePlayerByUUIDString(playerUUID);
         return accountOfflinePlayer.getName();
     }
 
@@ -100,7 +98,7 @@ public class PluginAccountRegistry {
 
         for (int accountIndex = 0; accountIndex < registry.size(); accountIndex++) {
             currentAccount = registryIterator.next();
-            serializedAccounts[accountIndex] = currentAccount.serializedForm;
+            serializedAccounts[accountIndex] = currentAccount.getSerializedForm();
         }
     }
 
@@ -118,22 +116,16 @@ public class PluginAccountRegistry {
         return null;
     }
 
-    public void addAccount(String discordId, String playerUUIDString) {
+    public void addAccount(AccountInfo accountInfo) {
 
-        if (credentialsAlreadyUsed(discordId, playerUUIDString))
-            throw new DuplicateAccountInformationException();
+        for (RegisteredAccount account : registry)
+            if (account.getInfo().hasDuplicatesOf(accountInfo))
+                throw new DuplicateAccountInformationException();
 
-        registry.add(RegisteredAccount.newInstance(discordId, playerUUIDString, plugin));
+        registry.add(new RegisteredAccount(accountInfo, getPluginJDA()));
     }
 
-    private boolean credentialsAlreadyUsed(String userID, String playerUUID) {
-        for (RegisteredAccount currentAccount : registry)
-            if (currentAccount.userIDEquals(userID) || currentAccount.playerUUIDEquals(playerUUID))
-                return true;
-        return false;
-    }
-
-    static class DuplicateAccountInformationException extends RuntimeException {
+    public static class DuplicateAccountInformationException extends RuntimeException {
         DuplicateAccountInformationException() {
             super("Duplicate credentials, check your info carefully");
         }

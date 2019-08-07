@@ -1,21 +1,21 @@
 package com.alejandro.thebestplugin.accounts;
 
-public class AccountInfoBuilder {
+class AccountInfoBuilder {
 
     private String userID;
     private String playerUUID;
 
-    public AccountInfoBuilder setUserID(String userID) {
+    AccountInfoBuilder setUserID(String userID) {
         this.userID = userID;
         return this;
     }
 
-    public AccountInfoBuilder setPlayerUUID(String playerUUID) {
+    AccountInfoBuilder setPlayerUUID(String playerUUID) {
         this.playerUUID = playerUUID;
         return this;
     }
 
-    public AccountInfo build() {
+    AccountInfo build() {
         return new AccountInfo(userID, playerUUID);
     }
 }
